@@ -13,6 +13,7 @@ $loader->addPsr4('App\\', DIR . '/App');
 $loader->addPsr4('Controllers\\', DIR . '/Controllers');
 $loader->addPsr4('Models\\', DIR . '/Models');
 $loader->addPsr4('Middlewares\\', DIR . '/Middlewares');
+$loader->addPsr4('Library\\', DIR . '/Library');
 
 use App\Kernel;
 Kernel::boot();

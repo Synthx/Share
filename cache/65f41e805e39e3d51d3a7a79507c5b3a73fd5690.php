@@ -51,7 +51,8 @@
                             <div class="card-img pb-3">
                                 <span class="mbr-iconfont pr-2 mbri-flag"></span>
                                 <h3 class="count py-3 mbr-fonts-style display-2">
-                                    200
+                                    <?php echo e(Models\Trip::count()); ?>
+
                                 </h3>
                             </div>
                             <div class="card-text">
@@ -69,7 +70,8 @@
                             <div class="card-img pb-3">
                                 <span class="mbr-iconfont pr-2 mbri-users"></span>
                                 <h3 class="count py-3 mbr-fonts-style display-2">
-                                    100
+                                    <?php echo e(Models\User::count()); ?>
+
                                 </h3>
                             </div>
                             <div class="card-text">
@@ -104,7 +106,9 @@
                         <div class="panel-item p-3">
                             <div class="card-img pb-3">
                                 <span class="mbr-iconfont pr-2 mbri-alert"></span>
-                                <h3 class="count py-3 mbr-fonts-style display-2">12</h3>
+                                <h3 class="count py-3 mbr-fonts-style display-2">
+                                    12
+                                </h3>
                             </div>
                             <div class="card-text">
                                 <h4 class="mbr-content-title mbr-bold mbr-fonts-style display-7">

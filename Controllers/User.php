@@ -2,11 +2,11 @@
 
 namespace Controllers;
 
-use App\Auth;
-use App\Request;
+use App\{Auth, Request};
 
-use Models\User as UserManager;
-use Models\Trip as TripManager;
+use Models\{User as UserManager, Trip as TripManager};
+
+use Library\Notifications;
 
 class User extends Controller
 {
@@ -71,7 +71,9 @@ class User extends Controller
 
     public function showDashboard()
     {
-        return view('user.dashboard.home');
+        $notifs = new Notifications(user());
+
+        return view('user.dashboard.home', compact('notifs'));
     }
 
     public function showTrips()
@@ -84,17 +86,6 @@ class User extends Controller
     public function showProfile()
     {
         return view('user.dashboard.profile');
-    }
-
-    public function changeInformations()
-    {
-        $request = new Request;
-
-        $this->validate($request, [
-
-        ]);
-
-        return redirect()->route('user.dashboard.profile');
     }
 
     public function showReservations()

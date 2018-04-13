@@ -11,22 +11,40 @@ class Error
         $this->_errors = Session::get('errors', []);
     }
 
-    public function all()
+    /**
+     * Get all errors
+     * @return array
+     */
+    public function all(): array
     {
         return array_values($this->_errors);
     }
 
-    public function has($key)
+    /**
+     * Test if an error exist
+     * @param  string  $key
+     * @return boolean
+     */
+    public function has(string $key): bool
     {
         return array_key_exists($key, $this->_errors);
     }
 
-    public function get($key)
+    /**
+     * Get an error
+     * @param  string $key
+     * @return string
+     */
+    public function get(string $key): string
     {
         return $this->_errors[$key];
     }
 
-    public function count()
+    /**
+     * Count number of errors
+     * @return [type] [description]
+     */
+    public function count(): int
     {
         return count($this->_errors);
     }

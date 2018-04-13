@@ -10,7 +10,13 @@ class Auth
 	private static $_login;
 	private static $_password;
 
-	public static function init($model, $loginColumn, $passwordColumn)
+	/**
+	 * Init auth class
+	 * @param  string $model
+	 * @param  string $loginColumn
+	 * @param  string $passwordColumn
+	 */
+	public static function init(string $model, string $loginColumn, string $passwordColumn)
 	{
 		self::$_model = $model;
 		self::$_login = $loginColumn;
@@ -39,17 +45,28 @@ class Auth
 		}
 	}
 
-	public static function isConnected()
+	/**
+	 * Return true if the current user is connected
+	 * @return boolean
+	 */
+	public static function isConnected(): bool
 	{
 		return self::$_logged;
 	}
 
+	/**
+	 * Return user properties
+	 * @return stdClass
+	 */
 	public static function user()
 	{
 		return self::$_infos;
 	}
 
-	public static function logout()
+	/**
+	 * Logout the current user
+	 */
+	public static function logout(): void
 	{
 		self::$_logged = false;
 		self::$_infos = null;
@@ -58,7 +75,14 @@ class Auth
 		Cookie::delete('_token');
 	}
 
-	public static function login($login, $password, $remember=false)
+	/**
+	 * Login a user
+	 * @param  string  $login
+	 * @param  string  $password
+	 * @param  boolean $remember
+	 * @return boolean
+	 */
+	public static function login(string $login, string $password, bool $remember=false): bool
 	{
 		$user = self::$_model::where(self::$_login, $login)->first();
 

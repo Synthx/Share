@@ -8,12 +8,22 @@ class Config
 {
     private static $_config;
 
-    public static function init($array)
+    /**
+     * Init config class with parsing config.php file
+     * @param  array  $array
+     */
+    public static function init(array $array)
     {
         self::_exploreArray($array);
     }
 
-    private static function _exploreArray($array, $level=0, $prefix='')
+    /**
+     * Convert a multidimensional array to one dimension array
+     * @param  array       $array
+     * @param  int|integer $level
+     * @param  string      $prefix
+     */
+    private static function _exploreArray(array $array, int $level=0, string $prefix='')
     {
         foreach ($array as $key => $value)
         {
@@ -34,7 +44,12 @@ class Config
         }
     }
 
-    public static function get($key)
+    /**
+     * Get config value associated with key
+     * @param  string $key
+     * @return mixed
+     */
+    public static function get(string $key)
     {
         if (!self::_exist($key))
             throw new Exception("Unknown config key [{$key}].", 0);
@@ -42,7 +57,12 @@ class Config
         return self::$_config[$key];
     }
 
-    private static function _exist($key)
+    /**
+     * Return true if key exist in config
+     * @param  string $key
+     * @return boolean
+     */
+    private static function _exist(string $key): bool
     {
         return array_key_exists($key, self::$_config);
     }

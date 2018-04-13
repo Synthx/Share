@@ -21,7 +21,7 @@ class Trip extends Controller
             'origin' => 'required|string|address',
             'destination' => 'required|string|address',
             'date' => 'required|date'
-        ]);
+        ], 'trip.search');
 
         $model = TripManager::where('origin', 'like', '%' . $request->origin . '%')->andWhere('destination', 'like', '%' . $request->destination . '%')->date('date', $request->date);
 
@@ -42,7 +42,7 @@ class Trip extends Controller
         $trips = $model->get();
         $total = $model->count();
 
-        return view('trip.list', compact('trips', 'total'));
+        return view('trip.list', compact('trips', 'total', 'request'));
     }
 
     public function showDetail()

@@ -8,7 +8,13 @@ class Route extends Router
     public $method;
     public $uri;
 
-    public static function get($uri, $action)
+    /**
+     * Add a new GET route
+     * @param  string $uri
+     * @param  string $action
+     * @return Route
+     */
+    public static function get(string $uri, string $action): self
     {
         $self = new self;
 
@@ -22,7 +28,13 @@ class Route extends Router
         return $self;
     }
 
-    public static function post($uri, $action)
+    /**
+     * Add a new POST route
+     * @param  string $uri
+     * @param  string $action
+     * @return Route
+     */
+    public static function post(string $uri, string $action): self
     {
         $self = new self;
 
@@ -36,20 +48,33 @@ class Route extends Router
         return $self;
     }
 
-    public function name($name)
+    /**
+     * Add name to current registered route
+     * @param  string $name
+     * @return Route
+     */
+    public function name(string $name): self
     {
         $this->properties['name'] = $name;
 
         return $this;
     }
 
-    public function middleware($middlewareName)
+    /**
+     * Add middleware to current registered route
+     * @param  string $middlewareName
+     * @return Route
+     */
+    public function middleware(string $middlewareName): self
     {
         $this->properties['middleware'] = $middlewareName;
 
         return $this;
     }
 
+    /**
+     * Register the current route
+     */
     public function __destruct()
     {
         self::add($this->uri, $this->method, $this->properties);

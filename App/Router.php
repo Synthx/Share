@@ -15,7 +15,13 @@ class Router extends Handler
         'POST' => []
     ];
 
-    public static function add($uri, $method, $properties)
+    /**
+     * Register a new route
+     * @param string $uri
+     * @param string $method
+     * @param array  $properties
+     */
+    public static function add(string $uri, string $method, array $properties)
     {
         if (self::existWithUri($uri, $method)) {
             print_r(self::$_routes);
@@ -31,17 +37,32 @@ class Router extends Handler
             self::$_names[$method][$properties['name']] = $uri;
     }
 
-    public static function exist($name)
+    /**
+     * Check if route with name already exist
+     * @param  string $name
+     * @return boolean
+     */
+    public static function exist(string $name): bool
     {
         return array_key_exists($name, self::$_names['GET']) || array_key_exists($name, self::$_names['POST']);
     }
 
-    public static function existWithUri($uri, $method)
+    /**
+     * Check if route with uri already exist
+     * @param  string $uri
+     * @param  string $method
+     * @return boolean
+     */
+    public static function existWithUri(string $uri, string $method): bool
     {
         return in_array($method, array_keys(self::$_routes)) && array_key_exists($uri, self::$_routes[$method]);
     }
 
-    public static function match($uri)
+    /**
+     * Match route with uri
+     * @param  string $uri
+     */
+    public static function match(string $uri)
     {
         if (!self::existWithUri($uri, METHOD))
             self::handleCode(404);
@@ -71,7 +92,11 @@ class Router extends Handler
         $controller->{$properties['method']}();
     }
 
-    public static function current()
+    /**
+     * Return current route name
+     * @return string
+     */
+    public static function current(): string
     {
         $currentUri = (isset($_REQUEST['uri'])) ? $_REQUEST['uri'] : '/' ;
 
@@ -81,7 +106,12 @@ class Router extends Handler
         return self::$_routes[METHOD][$currentUri]['name'];
     }
 
-    public static function url($name)
+    /**
+     * Return route uri with name
+     * @param  string $name
+     * @return string
+     */
+    public static function url(string $name): string
     {
         if (!self::exist($name))
             throw new Exception("Undefined route name [{$name}]", 1);
@@ -93,7 +123,12 @@ class Router extends Handler
         return $uri;
     }
 
-    public static function to($uri)
+    /**
+     * Return uri
+     * @param  string $uri
+     * @return string
+     */
+    public static function to(string $uri): string
     {
         return URL . $uri;
     }

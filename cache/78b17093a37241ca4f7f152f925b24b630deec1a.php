@@ -53,7 +53,7 @@
                        <div class="col-md-3 multi-horizontal">
                            <span class="input-group-btn">
                                <button type="submit" class="btn btn-primary btn-form display-4">
-                                   <span class="mbri-search mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                   <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
                                    RECHERCHER
                                </button>
                            </span>
@@ -73,6 +73,7 @@
     <script type="text/javascript">
         $('#date').datepicker({
             language: 'fr',
+            autoClose: true,
             minDate: new Date()
         });
         function initMap()

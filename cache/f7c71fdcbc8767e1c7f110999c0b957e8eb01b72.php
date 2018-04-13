@@ -29,22 +29,24 @@
             <div class="row px-1">
                 <div class="tab-content">
                     <div class="tab-pane in active mbr-table">
+                        <?php if($notifs->count() > 0): ?>
                         <section class="mbr-section article content12 cid-qOgSE2PoFL">
                             <div class="container">
                                 <h2 class="mbr-section-title pb-3 align-left mbr-fonts-style display-2">
-                                    Notifications (0)
+                                    Notifications (<?php echo e($notifs->count()); ?>)
                                 </h2>
                                 <div class="media-container-row">
                                     <div class="mbr-text counter-container col-12 col-md-12 mbr-fonts-style display-7">
                                         <ul>
-                                            <li><strong>MOBILE FRIENDLY</strong> - o special actions required, all sites you make with Mobirise are mobile-friendly. You don't have to create a special mobile version of your site, it will adapt automagically. <a href="https://mobirise.com/">Try it now!</a></li>
-                                            <li><strong>EASY AND SIMPLE</strong> - cut down the development time with drag-and-drop website builder. Drop the blocks into the page, edit content inline and publish - no technical skills required. <a href="https://mobirise.com/">Try it now!</a></li>
-                                            <li><strong>UNIQUE STYLES</strong> - choose from the large selection of latest pre-made blocks - full-screen intro, bootstrap carousel, content slider, responsive image gallery with lightbox, parallax scrolling, video backgrounds, hamburger menu, sticky header and more. <a href="https://mobirise.com/">Try it now!</a></li>
+                                            <?php $__currentLoopData = $notifs->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notif): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li><strong><?php echo e($notif['title']); ?></strong> - <?php echo e($notif['message']); ?></li>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </section>
+                        <?php endif; ?>
                         <section class="counters2 counters cid-qOgREAtAA8" id="counters2-v">
                             <div class="container pt-4 mt-2">
                                 <div class="media-container-row">

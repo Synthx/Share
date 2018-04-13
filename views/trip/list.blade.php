@@ -25,14 +25,21 @@
                     <div class="tab-pane in active mbr-table">
                         <section class="testimonials4 cid-qNiBy6X3PI" id="testimonials4-n">
                             <div class="container">
+                                @if ($total > 0)
                                 <h3 class="mbr-section-subtitle mbr-light pb-3 mbr-fonts-style mbr-white align-center display-5">
-                                    {{ $total }} trajets disponibles.
+                                    {{ $total }} trajets disponibles. Trier par :
                                 </h3>
+                                <div class="align-center">
+                                    <a class="btn @if ($request->order === '' || $request->order === 'date') btn-primary @else btn-outline-primary @endif display-4" style="margin: .0rem;" href="{{ route('trip.list') }}?origin={{ urlencode($request->origin) }}&destination={{ urlencode($request->destination) }}&date={{ urlencode($request->date) }}&order=date">
+                                        <span class="mbri-clock mbr-iconfont mbr-iconfont-btn"></span>
+                                        Date
+                                    </a>
+                                    <a class="btn @if ($request->order === 'price') btn-primary @else btn-outline-primary @endif display-4" style="margin: .0rem;" href="{{ route('trip.list') }}?origin={{ urlencode($request->origin) }}&destination={{ urlencode($request->destination) }}&date={{ urlencode($request->date) }}&order=price">
+                                        <span class="mbri-cash mbr-iconfont mbr-iconfont-btn"></span>
+                                        Prix
+                                    </a>
+                                </div>
                                 <div class="col-md-12 testimonials-container">
-                                    <div class="align-right">
-                                        <span>Trier par</span>
-
-                                    </div>
                                     @foreach ($trips as $trip)
                                     @php
                                     $driver = Models\User::find($trip->driver);
@@ -73,7 +80,7 @@
                                                     </p>
                                                 </div>
                                                 <a class="btn btn-primary display-4" style="margin: .0rem;" href="{{ route('trip.view') }}?id={{ $trip->id }}">
-                                                    <span class="mbri-success mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                                    <span class="mbri-success mbr-iconfont mbr-iconfont-btn"></span>
                                                     RÉSERVER
                                                 </a>
                                             </div>
@@ -82,11 +89,24 @@
                                     @endforeach
                                     <div class="align-left">
                                         <a class="btn btn-primary display-4" style="margin: 25px 0px;" href="{{ route('trip.search') }}">
-                                            <span class="mbri-left mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                            <span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span>
                                             RETOUR
                                         </a>
                                     </div>
                                 </div>
+                                @else
+                                <h3 class="mbr-section-subtitle mbr-light pb-3 mbr-fonts-style mbr-white align-center display-5">
+                                    Il n'y a pas de trajets disponible selon vos critères.
+                                </h3>
+                                <div class="col-md-12">
+                                    <div class="align-center">
+                                        <a class="btn btn-primary display-4" href="{{ route('trip.search') }}">
+                                            <span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span>
+                                            RETOUR
+                                        </a>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </section>
                     </div>

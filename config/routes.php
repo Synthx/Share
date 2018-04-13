@@ -8,6 +8,7 @@ Route::get('faq', 'Misc::showFaq')->name('faq');
 Route::get('about-us', 'Misc::showAboutUs')->name('about');
 Route::get('how-it-work', 'Misc::showHowItWork')->name('how-it-work');
 Route::get('car-sharing-charter', 'Misc::showCharter')->name('charter');
+Route::get('trust', 'Misc::showTrust')->name('trust');
 Route::get('contact', 'Misc::showContact')->name('contact');
 Route::post('contact', 'Misc::contact');
 

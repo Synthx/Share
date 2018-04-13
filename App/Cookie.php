@@ -4,7 +4,13 @@ namespace App;
 
 class Cookie
 {
-    public static function set($name, $value, $time=0)
+    /**
+     * Set a cookie
+     * @param string      $name
+     * @param mixed       $value
+     * @param int|integer $time
+     */
+    public static function set(string $name, $value, int $time=0)
     {
         if ($time == 0)
             $time = 365*24*3600;
@@ -12,7 +18,14 @@ class Cookie
         setcookie($name, $value, time() + $time, '/', null, false, true);
     }
 
-    public static function get($name, $default='')
+    
+    /**
+     * Retrieve cookke value
+     * @param  string $name
+     * @param  string $default
+     * @return string
+     */
+    public static function get(string $name, $default=''): string
     {
         if (!self::exist($name))
             return $default;
@@ -20,7 +33,11 @@ class Cookie
         return $_COOKIE[$name];
     }
 
-    public static function delete($name)
+    /**
+     * Delete cookie associated with name
+     * @param  string $name
+     */
+    public static function delete(string $name)
     {
         if (self::exist($name))
         {
@@ -29,7 +46,12 @@ class Cookie
         }
     }
 
-    public static function exist($name)
+    /**
+     * Return true if cookie with name exist
+     * @param  string $name
+     * @return boolean
+     */
+    public static function exist(string $name): bool
     {
         return isset($_COOKIE[$name]);
     }

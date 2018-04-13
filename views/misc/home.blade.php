@@ -6,22 +6,8 @@
     <link rel="stylesheet" href="{{ asset('resources/datepicker/css/datepicker.min.css') }}">
 @endsection
 
-@section('script')
-    <script src="{{ asset('resources/playervimeo/vimeo_player.js') }}"></script>
-    <script src="{{ asset('resources/ytplayer/jquery.mb.ytplayer.min.js') }}"></script>
-    <script src="{{ asset('resources/vimeoplayer/jquery.mb.vimeo_player.js') }}"></script>
-    <script src="{{ asset('resources/datepicker/js/datepicker.min.js') }}"></script>
-    <script src="{{ asset('resources/datepicker/js/i18n/datepicker.fr.js') }}"></script>
-    <script type="text/javascript">
-        $('#date').datepicker({
-            language: 'fr',
-            minDate: new Date()
-        });
-    </script>
-@endsection
-
 @section('content')
-    <section class="header13 cid-qLPGU3P1sE mbr-fullscreen" id="header13-2" data-bg-video="https://www.youtube.com/watch?v=Xub1gtr-etE">
+    <section class="header13 cid-qLPGU3P1sE mbr-fullscreen" data-bg-video="https://www.youtube.com/watch?v=Xub1gtr-etE">
         <div class="container">
             <h1 class="mbr-section-title align-center pb-3 mbr-white mbr-bold mbr-fonts-style display-1">
                 Découvrez de nouveaux horizons
@@ -34,13 +20,13 @@
                     <form class="form-inline" action="{{ route('trip.list') }}" method="get">
                         {!! csrf() !!}
                         <div class="form-group">
-                            <input type="text" class="form-control input-sm input-inverse" placeholder="De" name="from" required>
+                            <input id="origin" type="text" class="form-control input-sm input-inverse" placeholder="De" name="origin">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control input-sm input-inverse" placeholder="À" name="to" required>
+                            <input id="destination" type="text" class="form-control input-sm input-inverse" placeholder="À" name="destination">
                         </div>
                         <div class="form-group">
-                            <input id="date" type="text" class="form-control input-sm input-inverse" placeholder="Date" name="date" required>
+                            <input id="date" type="text" class="form-control input-sm input-inverse" placeholder="Date" name="date">
                         </div>
                         <div class="buttons-wrap">
                             <button class="btn btn-primary display-4" type="submit">
@@ -74,7 +60,7 @@
                                 Pratique
                             </h4>
                             <p class="mbr-text mbr-fonts-style display-7">
-                                <br>Trouvez rapidement un covoiturage à proximité parmi les millions de trajets proposés.
+                                <br />Trouvez rapidement un covoiturage à proximité parmi les milliers de trajets proposés.
                             </p>
                         </div>
                     </div>
@@ -89,7 +75,7 @@
                                 Simple
                             </h4>
                             <p class="mbr-text mbr-fonts-style display-7">
-                                <br>Réservez le trajet parfait ! Il suffit d'entrer votre adresse exacte et de choisir avec qui vous voulez voyager.
+                                <br />Réservez le trajet parfait ! Il suffit d'entrer votre adresse exacte et de choisir avec qui vous voulez voyager.
                             </p>
                         </div>
                     </div>
@@ -104,7 +90,7 @@
                                 Direct
                             </h4>
                             <p class="mbr-text mbr-fonts-style display-7">
-                                <br>Vous arrivez à l'adresse exacte de votre destination sans perdre de temps sur le quai ou dans les files d'attente.
+                                <br />Vous arrivez à l'adresse exacte de votre destination sans perdre de temps sur le quai ou dans les files d'attente.
                             </p>
                         </div>
                     </div>
@@ -171,4 +157,29 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('script')
+    <script src="{{ asset('resources/playervimeo/vimeo_player.js') }}"></script>
+    <script src="{{ asset('resources/ytplayer/jquery.mb.ytplayer.min.js') }}"></script>
+    <script src="{{ asset('resources/vimeoplayer/jquery.mb.vimeo_player.js') }}"></script>
+    <script src="{{ asset('resources/datepicker/js/datepicker.min.js') }}"></script>
+    <script src="{{ asset('resources/datepicker/js/i18n/datepicker.fr.js') }}"></script>
+    <script type="text/javascript">
+        $('#date').datepicker({
+            language: 'fr',
+            autoClose: true,
+            minDate: new Date()
+        });
+        function initMap()
+        {
+            var options = {
+                types: ['(cities)'],
+                componentRestrictions: {country: 'fr'}
+            };
+            var origin = new google.maps.places.Autocomplete(document.getElementById('origin'), options);
+            var destination = new google.maps.places.Autocomplete(document.getElementById('destination'), options);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('maps.key') }}&libraries=places&callback=initMap&language=fr" async defer></script>
 @endsection

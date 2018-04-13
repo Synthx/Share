@@ -4,13 +4,22 @@ namespace App;
 
 class Redirect
 {
-    public function route($name)
+    /**
+     * Redirect to the route
+     * @param  string $name
+     */
+    public function route(string $name)
     {
         header('Location: ' . route($name), true, 303);
         exit;
     }
 
-    public function withInputs(Request $request)
+    /**
+     * Add old inputs when redirecting
+     * @param  Request $request
+     * @return Request
+     */
+    public function withInputs(Request $request): self
     {
         foreach ($request->inputs() as $key => $value)
             Session::setFlash($key, 'old', $value);
@@ -18,7 +27,12 @@ class Redirect
         return $this;
     }
 
-    public function with($flashs)
+    /**
+     * Add flashs messages when redirecting
+     * @param  array  $flashs
+     * @return Request
+     */
+    public function with(array $flashs): self
     {
         foreach ($flashs as $key => $message)
             Session::setFlash($key, 'flash', $message);
@@ -26,6 +40,9 @@ class Redirect
         return $this;
     }
 
+    /**
+     * Redirect to the previous uri
+     */
     public function back()
     {
         $routeName = Session::get('previous');

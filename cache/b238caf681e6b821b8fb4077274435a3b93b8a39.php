@@ -23,14 +23,21 @@
                     <div class="tab-pane in active mbr-table">
                         <section class="testimonials4 cid-qNiBy6X3PI" id="testimonials4-n">
                             <div class="container">
+                                <?php if($total > 0): ?>
                                 <h3 class="mbr-section-subtitle mbr-light pb-3 mbr-fonts-style mbr-white align-center display-5">
-                                    <?php echo e($total); ?> trajets disponibles.
+                                    <?php echo e($total); ?> trajets disponibles. Trier par :
                                 </h3>
+                                <div class="align-center">
+                                    <a class="btn <?php if($request->order === '' || $request->order === 'date'): ?> btn-primary <?php else: ?> btn-outline-primary <?php endif; ?> display-4" style="margin: .0rem;" href="<?php echo e(route('trip.list')); ?>?origin=<?php echo e(urlencode($request->origin)); ?>&destination=<?php echo e(urlencode($request->destination)); ?>&date=<?php echo e(urlencode($request->date)); ?>&order=date">
+                                        <span class="mbri-clock mbr-iconfont mbr-iconfont-btn"></span>
+                                        Date
+                                    </a>
+                                    <a class="btn <?php if($request->order === 'price'): ?> btn-primary <?php else: ?> btn-outline-primary <?php endif; ?> display-4" style="margin: .0rem;" href="<?php echo e(route('trip.list')); ?>?origin=<?php echo e(urlencode($request->origin)); ?>&destination=<?php echo e(urlencode($request->destination)); ?>&date=<?php echo e(urlencode($request->date)); ?>&order=price">
+                                        <span class="mbri-cash mbr-iconfont mbr-iconfont-btn"></span>
+                                        Prix
+                                    </a>
+                                </div>
                                 <div class="col-md-12 testimonials-container">
-                                    <div class="align-right">
-                                        <span>Trier par</span>
-
-                                    </div>
                                     <?php $__currentLoopData = $trips; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $trip): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <?php
                                     $driver = Models\User::find($trip->driver);
@@ -72,7 +79,7 @@
                                                     </p>
                                                 </div>
                                                 <a class="btn btn-primary display-4" style="margin: .0rem;" href="<?php echo e(route('trip.view')); ?>?id=<?php echo e($trip->id); ?>">
-                                                    <span class="mbri-success mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                                    <span class="mbri-success mbr-iconfont mbr-iconfont-btn"></span>
                                                     RÉSERVER
                                                 </a>
                                             </div>
@@ -81,11 +88,24 @@
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     <div class="align-left">
                                         <a class="btn btn-primary display-4" style="margin: 25px 0px;" href="<?php echo e(route('trip.search')); ?>">
-                                            <span class="mbri-left mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                            <span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span>
                                             RETOUR
                                         </a>
                                     </div>
                                 </div>
+                                <?php else: ?>
+                                <h3 class="mbr-section-subtitle mbr-light pb-3 mbr-fonts-style mbr-white align-center display-5">
+                                    Il n'y a pas de trajets disponible selon vos critères.
+                                </h3>
+                                <div class="col-md-12">
+                                    <div class="align-center">
+                                        <a class="btn btn-primary display-4" href="<?php echo e(route('trip.search')); ?>">
+                                            <span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span>
+                                            RETOUR
+                                        </a>
+                                    </div>
+                                </div>
+                                <?php endif; ?>
                             </div>
                         </section>
                     </div>

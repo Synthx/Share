@@ -2,12 +2,11 @@
 
 namespace Controllers;
 
-use App\Validation;
-use App\Request;
+use App\{Validation, Request};
 
 class Controller
 {
-    public function validate(Request $request, $arrayRules)
+    public function validate(Request $request, array $arrayRules, $routeName=null)
     {
         $validator = new Validation($request, $arrayRules);
 
@@ -15,7 +14,12 @@ class Controller
         {
             $validator->generateErrors();
 
-            return redirect()->withInputs($request)->back();
+            $response = redirect()->withInputs($request);
+
+            if ($routeName)
+                return $response->route($routeName);
+            else
+                return $response->back();
         }
     }
 }

@@ -74,7 +74,7 @@
                                                         <span style="font-size: 1.8rem;"><?php echo e($trip->remaining); ?></span> place(s) restante(s)
                                                     </p>
                                                 </div>
-                                                <a class="btn btn-primary display-4" style="margin: .0rem;" href="#">
+                                                <a class="btn btn-primary display-4" style="margin: .0rem;" href="<?php echo e(route('trip.view')); ?>?id=<?php echo e($trip->id); ?>">
                                                     <span class="mbri-plus mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
                                                     VOIR
                                                 </a>

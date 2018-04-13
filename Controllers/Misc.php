@@ -4,8 +4,7 @@ namespace Controllers;
 
 use App\Request;
 
-use Models\Team as TeamManager;
-use Models\Contact as MessageManager;
+use Models\{Team as TeamManager, Contact as MessageManager};
 
 class Misc extends Controller
 {
@@ -34,6 +33,11 @@ class Misc extends Controller
     public function showCharter()
     {
         return view('misc.charter');
+    }
+
+    public function showTrust()
+    {
+        return view('misc.trust');
     }
 
     public function showContact()

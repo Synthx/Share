@@ -67,7 +67,7 @@
                         </div>
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary btn-form display-4">
-                                <span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                <span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>
                                 ENVOYER
                             </button>
                         </span>

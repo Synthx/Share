@@ -2,8 +2,7 @@
 
 namespace App;
 
-use PDO;
-use Exception;
+use PDO, Exception;
 
 class Model
 {
@@ -27,7 +26,14 @@ class Model
     
     private $_stmt;
 
-    public static function init($host, $db, $user, $password)
+    /**
+     * Init Model class
+     * @param  string $host
+     * @param  string $db
+     * @param  string $user
+     * @param  string $password
+     */
+    public static function init(string $host, string $db, string $user, string $password)
     {
         self::$_pdo = new PDO("mysql:host={$host};dbname={$db}", $user, $password, [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8']);
     }
@@ -47,21 +53,21 @@ class Model
         return $self->{$method}($args);
     }
 
-    protected function table($args)
+    protected function table(array $args): self
     {
     	$this->_table = $args[0];
 
     	return $this;
     }
 
-    protected function select($args)
+    protected function select(array $args): self
     {
     	$this->_columns = (empty($args)) ? '*' : join(', ', $args) ;
 
     	return $this;
     }
 
-    protected function where($args)
+    protected function where(array $args): self
     {
     	switch (count($args))
     	{
@@ -86,7 +92,7 @@ class Model
     	return $this;
     }
 
-    protected function andWhere($args)
+    protected function andWhere(array $args): self
     {
     	switch (count($args))
     	{
@@ -111,14 +117,14 @@ class Model
     	return $this;
     }
 
-    protected function afterToday($args)
+    protected function afterToday(array $args): self
     {
         $this->_conditions .= " AND {$args[0]} > NOW()";
 
         return $this;
     }
 
-    protected function date($args)
+    protected function date(array $args): self
     {
         $date = \DateTime::createFromFormat('d/m/Y', $args[1]);
 
@@ -127,7 +133,7 @@ class Model
         return $this;
     }
 
-    protected function orderBy($args)
+    protected function orderBy(array $args): self
     {
     	switch (count($args))
     	{
@@ -149,21 +155,21 @@ class Model
     	return $this;
     }
 
-    protected function orderByRand()
+    protected function orderByRand(): self
     {
     	$this->_order = " ORDER BY RAND()";
 
     	return $this;
     }
 
-    protected function limit($args)
+    protected function limit(array $args): self
     {
     	$this->_limit = " LIMIT {$args[0]}";
 
     	return $this;
     }
 
-    protected function offset($args)
+    protected function offset(array $args): self
     {
     	$this->_limit .= " OFFSET {$args[0]}";
 
@@ -195,7 +201,7 @@ class Model
     	return $this->_stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    protected function find($args)
+    protected function find(array $args)
     {
         $this->limit([1]);
         $this->where([$this->_primaryKey, $args[0]]);
@@ -205,20 +211,21 @@ class Model
         return $this->_stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    protected function findOrFail($args)
+    // TODO
+    protected function findOrFail(array $args)
     {
         $this->limit([1]);
         $this->where([$this->_primaryKey, $args[0]]);
     }
 
-    protected function count()
+    protected function count(): int
     {
         $this->_run();
 
         return $this->_stmt->rowCount();
     }
 
-    protected function update($args)
+    protected function update(array $args): void
     {
         $this->_method = self::UPDATE;
 
@@ -228,7 +235,7 @@ class Model
         $this->_run();
     }
 
-    protected function add($args)
+    protected function add(array $args): void
     {
         $this->_method = self::INSERT;
 

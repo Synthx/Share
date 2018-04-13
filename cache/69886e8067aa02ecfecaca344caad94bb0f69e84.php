@@ -20,8 +20,8 @@
     <?php echo $__env->yieldContent('stylesheet'); ?>
 </head>
 <body>
-    <section class="menu cid-qLPFIklsSH" once="menu" id="menu2-q">
-        <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+    <section class="menu cid-qLPFIklsSH">
+        <nav class="navbar navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="hamburger">
                     <span></span>
@@ -59,6 +59,7 @@
                             <a class="text-primary dropdown-item display-4" href="<?php echo e(route('how-it-work')); ?>">Comment ça marche</a>
                             <a class="text-primary dropdown-item display-4" href="<?php echo e(route('faq')); ?>">Foire Aux Questions</a>
                             <a class="text-primary dropdown-item display-4" href="<?php echo e(route('charter')); ?>">Charte de bonne conduite</a>
+                            <a class="text-primary dropdown-item display-4" href="<?php echo e(route('trust')); ?>">Confiance et sérénité</a>
                         </div>
                     </li>
                 </ul>

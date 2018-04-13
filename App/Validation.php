@@ -10,7 +10,12 @@ class Validation
     private $_inputs = [];
     private $_fields;
 
-    public function __construct(Request $request, $arrayRules)
+    /**
+     * Create new validation rules
+     * @param Request $request
+     * @param array   $arrayRules
+     */
+    public function __construct(Request $request, array $arrayRules)
     {
         $this->_fields = require DIR . '/config/validation.php';
 
@@ -37,16 +42,27 @@ class Validation
         }
     }
 
-    public function getErrors()
+    /**
+     * Get all errors
+     * @return array
+     */
+    public function getErrors(): array
     {
         return $this->_errors;
     }
 
-    public function countErrors()
+    /**
+     * Count number of errors
+     * @return int|integer
+     */
+    public function countErrors(): int
     {
         return count($this->_errors);
     }
 
+    /**
+     * Generate errors
+     */
     public function generateErrors()
     {
         if ($this->countErrors() > 0)
@@ -56,7 +72,7 @@ class Validation
         }
     }
 
-    protected function required($key, $value)
+    protected function required(string $key, $value)
     {
         if ($value == '')
         {
@@ -69,7 +85,7 @@ class Validation
         }
     }
 
-    protected function email($key, $value)
+    protected function email(string $key, $value)
     {
         if (!filter_var($value, FILTER_VALIDATE_EMAIL))
         {
@@ -82,7 +98,7 @@ class Validation
         }
     }
 
-    protected function alpha_num($key, $value)
+    protected function alpha_num(string $key, $value)
     {
         if (!preg_match('/^[0-9A-Za-z\-_]+$/', $value))
         {
@@ -95,7 +111,7 @@ class Validation
         }
     }
 
-    protected function num($key, $value)
+    protected function num(string $key, $value)
     {
         if (!preg_match('/^[0-9]+$/', $value))
         {
@@ -108,7 +124,7 @@ class Validation
         }
     }
 
-    protected function string($key, $value)
+    protected function string(string $key, $value)
     {
         if (!preg_match('/^[\s\wÀ-ÿ\-\,\.\"\' ]+$/', $value))
         {
@@ -121,13 +137,13 @@ class Validation
         }
     }
 
-    private function _validateDate($date, $format = 'd/m/Y H:i')
+    private function _validateDate(string $date, string $format='d/m/Y H:i')
     {
         $d = \DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
     }
 
-    protected function datetime($key, $value)
+    protected function datetime(string $key, $value)
     {
         if (!$this->_validateDate($value))
         {
@@ -140,7 +156,7 @@ class Validation
         }
     }
 
-    protected function date($key, $value)
+    protected function date(string $key, $value)
     {
         if (!$this->_validateDate($value, 'd/m/Y'))
         {
@@ -153,7 +169,7 @@ class Validation
         }
     }
 
-    protected function address($key, $value)
+    protected function address(string $key, $value)
     {
         $e = explode(',', $value);
 
@@ -168,7 +184,7 @@ class Validation
         }
     }
 
-    protected function min($key, $value, $args)
+    protected function min(string $key, $value, array $args)
     {
         if (intval($value) < intval($args[0]))
         {
@@ -181,7 +197,7 @@ class Validation
         }
     }
 
-    protected function max($key, $value, $args)
+    protected function max(string $key, $value, array $args)
     {
         if (intval($value) > intval($args[0]))
         {
@@ -194,7 +210,7 @@ class Validation
         }
     }
 
-    protected function min_size($key, $value, $args)
+    protected function min_size(string $key, $value, array $args)
     {
         if (strlen($value) < $args[0])
         {
@@ -207,7 +223,7 @@ class Validation
         }
     }
 
-    protected function max_size($key, $value, $args)
+    protected function max_size(string $key, $value, array $args)
     {
         if (strlen($value) > $args[0])
         {
@@ -220,7 +236,7 @@ class Validation
         }
     }
 
-    protected function size($key, $value, $args)
+    protected function size(string $key, $value, array $args)
     {
         if (strlen($value) != $args[0])
         {
@@ -233,7 +249,7 @@ class Validation
         }
     }
 
-    protected function sex($key, $value)
+    protected function sex(string $key, $value)
     {
         if (!in_array($value, ['m', 'f']))
         {
@@ -246,7 +262,7 @@ class Validation
         }
     }
 
-    protected function exist($key, $value, $args)
+    protected function exist(string $key, $value, array $args)
     {
         if (Model::table($args[0])->where($args[1], $value)->count() == 0)
         {
@@ -259,7 +275,7 @@ class Validation
         }
     }
 
-    protected function unique($key, $value, $args)
+    protected function unique(string $key, $value, array $args)
     {
         if (Model::table($args[0])->where($args[1], $value)->count() > 0)
         {

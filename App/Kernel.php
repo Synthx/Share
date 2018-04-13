@@ -6,6 +6,9 @@ use Exception;
 
 class Kernel extends Handler
 {
+    /**
+     * Initialize all class
+     */
     public static function boot()
     {
         try
@@ -35,6 +38,9 @@ class Kernel extends Handler
         }
     }
 
+    /**
+     * Match route with the current uri
+     */
     public static function run()
     {
         try
@@ -49,6 +55,9 @@ class Kernel extends Handler
         }
     }
 
+    /**
+     * Clear flash data
+     */
     public static function end()
     {
         Session::set('previous', Router::current());

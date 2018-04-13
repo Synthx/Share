@@ -94,7 +94,7 @@
                                                 </div>
                                                 <div class="input-group-btn col-md-12" style="margin-top: 10px;">
                                                     <a onclick="changeTab(1)" class="btn btn-primary btn-form display-4">
-                                                        <span class="mbri-right mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                                        <span class="mbri-right mbr-iconfont mbr-iconfont-btn"></span>
                                                         CONTINUER
                                                     </a>
                                                 </div>
@@ -139,11 +139,11 @@
                                                 </div>
                                                 <div class="input-group-btn col-md-12" style="margin-top: 10px;">
                                                     <a onclick="changeTab(-1)" class="btn btn-secondary btn-form display-4">
-                                                        <span class="mbri-left mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                                        <span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span>
                                                         PRÉCÉDENT
                                                     </a>
                                                     <a onclick="changeTab(1)" class="btn btn-primary btn-form display-4">
-                                                        <span class="mbri-right mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                                        <span class="mbri-right mbr-iconfont mbr-iconfont-btn"></span>
                                                         CONTINUER
                                                     </a>
                                                 </div>
@@ -164,11 +164,11 @@
                                             </div>
                                             <div class="input-group-btn col-md-12" style="margin-top: 10px;">
                                                 <a onclick="changeTab(-1)" class="btn btn-secondary btn-form display-4">
-                                                    <span class="mbri-left mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                                    <span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span>
                                                     PRÉCÉDENT
                                                 </a>
                                                 <button type="submit" class="btn btn-primary btn-form display-4">
-                                                    <span class="mbri-success mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
+                                                    <span class="mbri-success mbr-iconfont mbr-iconfont-btn"></span>
                                                     VALIDER
                                                 </button>
                                             </div>
@@ -327,6 +327,7 @@
         $('#date').datepicker({
             timepicker: true,
             language: 'fr',
+            autoClose: true,
             minDate: new Date()
         });
     </script>

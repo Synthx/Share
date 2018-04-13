@@ -91,14 +91,14 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="form-control-label mbr-fonts-style display-7">Autobio</label>
-                                                        <textarea name="autobio" class="form-control" rows="4" placeholder="Que faites-vous dans votre temps libre ? Où allez-vous le plus souvent ? Qu'est-ce qui fait de vous une personne avec qui il est agréable de voyager ?">{{ user()->autobio }}</textarea>
+                                                        <label class="form-control-label mbr-fonts-style display-7">Minibio</label>
+                                                        <textarea name="minibio" class="form-control" rows="4" placeholder="Que faites-vous dans votre temps libre ? Où allez-vous le plus souvent ? Qu'est-ce qui fait de vous une personne avec qui il est agréable de voyager ?">{{ user()->minibio }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <span class="input-group-btn">
                                                 <button type="submit" class="btn btn-primary btn-form display-4">
-                                                    <span class="mbri-success mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem; color: rgb(255, 255, 255);"></span>
+                                                    <span class="mbri-success mbr-iconfont mbr-iconfont-btn"></span>
                                                     VALIDER
                                                 </button>
                                             </span>
