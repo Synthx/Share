@@ -53,7 +53,7 @@
                 <div class="col-12 col-md-6 mb-4 col-lg-4">
                     <div class="card flip-card p-5 align-center">
                         <div class="card-front card_cont">
-                            <img src="resources/images/jumbotron/practical.jpg">
+                            <img src="{{ asset('resources/images/jumbotron/practical.jpg') }}">
                         </div>
                         <div class="card_back card_cont">
                             <h4 class="card-title display-5 py-2 mbr-fonts-style">
@@ -68,7 +68,7 @@
                 <div class="col-12 col-md-6 mb-4 col-lg-4">
                     <div class="card flip-card p-5 align-center">
                         <div class="card-front card_cont">
-                            <img src="resources/images/jumbotron/simple.jpg">
+                            <img src="{{ asset('resources/images/jumbotron/simple.jpg') }}">
                         </div>
                         <div class="card_back card_cont">
                             <h4 class="card-title py-2 mbr-fonts-style display-5">
@@ -83,7 +83,7 @@
                 <div class="col-12 col-md-6 mb-4 col-lg-4">
                     <div class="card flip-card p-5 align-center">
                         <div class="card-front card_cont">
-                            <img src="resources/images/jumbotron/direct.jpg">
+                            <img src="{{ asset('resources/images/jumbotron/direct.jpg') }}">
                         </div>
                         <div class="card_back card_cont">
                             <h4 class="card-title py-2 mbr-fonts-style display-5">
@@ -98,7 +98,7 @@
             </div>
         </div>
     </section>
-    <section class="features1 cid-qLTUUiNImF" id="features1-v">
+    <section class="features1 cid-qLTUUiNImF">
         <div class="container">
             <div class="media-container-row">
                 <div class="card p-3 col-12 col-md-6 col-lg-4">
@@ -137,7 +137,7 @@
             </div>
         </div>
     </section>
-    <section class="mbr-section info2 cid-qLPIoN4qLd" id="info2-7">
+    <section class="mbr-section info2 cid-qLPIoN4qLd">
         <div class="container">
             <div class="row main justify-content-center">
                 <div class="media-container-column col-12 col-lg-3 col-md-4">

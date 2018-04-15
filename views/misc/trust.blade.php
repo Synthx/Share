@@ -7,8 +7,12 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="mbr-white col-md-10">
-                <h1 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style display-1">Voyagez en toute confiance</h1>
-                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-2">Une communauté de confiance</h3>
+                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-1">
+                    Voyagez en toute confiance
+                </h3>
+                <p class="mbr-text align-center pb-3 mbr-fonts-style display-5">
+                    Une communauté de confiance
+                </p>
             </div>
         </div>
     </div>

@@ -4074,7 +4074,7 @@ body {
 }
 .cid-qP85WIp79T {
     padding-top: 60px;
-    padding-bottom: 60px;
+    padding-bottom: 40px;
     background-color: #ffffff;
 }
 @media (min-width: 992px) {
@@ -4089,4 +4089,110 @@ body {
 }
 .cid-qP85WIp79T .mbr-text {
     color: #767676;
+}
+.cid-qPhbNVglFP {
+  padding-top: 75px;
+  padding-bottom: 75px;
+  background-color: #ffffff;
+}
+.cid-qPhbNVglFP .mbr-section-subtitle {
+  color: #767676;
+}
+.cid-qPhbNVglFP .btn {
+  margin: 0 0 .5rem 0;
+}
+.cid-qPhcWHI2SW {
+    background-color: #ffffff;
+}
+.cid-qPhcWHI2SW h2 {
+    text-align: left;
+}
+.cid-qPhcWHI2SW h4 {
+    text-align: left;
+    font-weight: 500;
+}
+.cid-qPhcWHI2SW p {
+    color: #767676;
+    text-align: left;
+}
+.cid-qPhcWHI2SW .block-content {
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    word-break: break-word;
+}
+/* PREFS ICONS */
+.prefs {
+    background-color: transparent;
+    background-image: url("../../images/prefs.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    height: 26px;
+    margin-right: 5px;
+    text-indent: -10000px;
+    width: 26px;
+}
+.prefs.bla{background-position:0 0}
+.prefs.blablabla{background-position:0 -104px}
+.prefs.music{ background-position:0 -312px }
+.prefs.no-music{ background-position:0 -416px}
+.prefs.smoking{background-position:0 -156px}
+.prefs.no-smoking{ background-position:0 -260px}
+.prefs.pet{background-position:0 -468px}
+.prefs.no-pet{background-position:0 -572px}
+.icon-star {
+    width: 1rem;
+    height: 1rem;
+    fill: #5DD167 !important;
+}
+.btn-outline-primary {
+    color: #149dcc;
+    background-color: transparent;
+    background-image: none;
+    border-color: #149dcc;
+}
+.btn-outline-primary:hover {
+    color: #ffffff;
+    background-color: #149dcc;
+    border-color: #149dcc;
+}
+.cid-qPiTqkNo2w {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #ffffff;
+}
+.cid-qPiTqkNo2w .mbr-text, .cid-qPiTqkNo2w blockquote {
+    color: #767676;
+}
+/* MINIBIO CONTENT */
+.member-bio {
+    background: #eff8fd;
+    border-radius: 3px;
+    font-size: 22px;
+    line-height: 33px;
+    position: relative;
+}
+.padding {
+    padding: 17px !important;
+}
+.member-bio .bio-bubble {
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 58px;
+    top: -15px;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 15px solid #eff8fd;
+}
+.member-bio p {
+    color: #054752;
+    margin: auto;
+}
+.member-bio h2 {
+    color: #00AFF5;
+    font-size: 22px;
+    margin: 0 0 9px 0;
 }

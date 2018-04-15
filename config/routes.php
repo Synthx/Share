@@ -13,6 +13,7 @@ Route::get('contact', 'Misc::showContact')->name('contact');
 Route::post('contact', 'Misc::contact');
 
 /* USER */
+Route::get('account/profile', 'User::viewProfile')->name('user.profile');
 //Guest
 Route::get('account/login', 'User::showLoginForm')->middleware('Guest')->name('user.login');
 Route::post('account/login', 'User::login')->middleware('Guest');
@@ -33,3 +34,4 @@ Route::get('trips/view', 'Trip::showDetail')->name('trip.view');
 //Auth
 Route::get('trips/add', 'Trip::showAddForm')->middleware('Auth')->name('trip.add');
 Route::post('trips/add', 'Trip::AddTrip')->middleware('Auth');
+Route::post('trips/view', 'Trip::reservePlace')->middleware('Auth');

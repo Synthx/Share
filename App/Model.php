@@ -253,11 +253,11 @@ class Model
     			$this->_query = "SELECT {$this->_columns} FROM {$this->_table}{$this->_conditions}{$this->_order}{$this->_limit}";
     		break;
             case self::UPDATE:
-                $columns = '';
+                $text = '';
                 foreach ($this->_parameters as $columns => $value)
-                    $columns .= "{$columns} = :{$columns}, ";
+                    $text .= "{$columns} = :{$columns}, ";
 
-                $this->_query = "UPDATE {$this->_table} SET " . substr($columns, 0, -1) . $this->_conditions;
+                $this->_query = "UPDATE {$this->_table} SET " . substr($text, 0, -2) . $this->_conditions;
             break;
             case self::INSERT:
                 $this->_query = "INSERT INTO {$this->_table} (" . implode(', ', array_keys($this->_parameters)) . ") VALUES (:" . implode(', :', array_keys($this->_parameters)) . ")";

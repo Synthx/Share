@@ -4,7 +4,7 @@ namespace Controllers;
 
 use App\Request;
 
-use Models\Trip as TripManager;
+use Models\{Trip as TripManager, User as UserManager};
 
 class Trip extends Controller
 {
@@ -50,12 +50,37 @@ class Trip extends Controller
         $request = new Request;
 
         $this->validate($request, [
+            'id' => 'required|num|exist:trips,id'
+        ], 'trip.search');
 
+        $trip = TripManager::find($request->id);
+        $driver = UserManager::find($trip->driver);
+
+        return view('trip.detail', compact('trip', 'driver'));
+    }
+
+    public function reservePlace()
+    {
+        $request = new Request;
+
+        $this->validate($request, [
+            'id' => 'required|num|exist:trips,id'
         ]);
 
-        $trip = [];
+        $trip = TripManager::find($request->id);
+        $passengers = (empty($trip->passengers)) ? [] : explode(',', $trip->passengers);
 
-        return view('trip.detail', compact('trip'));
+        if (in_array(user()->id, $passengers))
+            return redirect()->route('trip.search');
+
+        array_push($passengers, user()->id);
+
+        TripManager::where('id', $trip->id)->update([
+            'passengers' => implode(',', $passengers),
+            'remaining' => $trip->remaining - 1
+        ]);
+
+        return redirect()->with(['success' => 'Vous vous êtes inscrit avec succès au trajet séléctionné.'])->route('user.dashboard.reservations');
     }
 
     public function showAddForm()
@@ -76,6 +101,7 @@ class Trip extends Controller
         ]);
 
         $date = \DateTime::createFromFormat('d/m/Y H:i', $request->date);
+        $post_date = new \DateTime('NOW');
 
         $e_origin = explode(',', $request->origin);
         $e_destination = explode(',', $request->destination);
@@ -86,6 +112,7 @@ class Trip extends Controller
             'origin_city' => $e_origin[count($e_origin) - 2],
             'destination' => $request->destination,
             'destination_city' => $e_destination[count($e_destination) - 2],
+            'post_date' => $post_date->format('Y-m-d'),
             'date' => $date->format('Y-m-d H:i:s'),
             'price' => $request->price,
             'places' => $request->places,
@@ -93,6 +120,10 @@ class Trip extends Controller
             'comment' => $request->comment
         ]);
 
-        return redirect()->route('user.dashboard.trips');
+        UserManager::where('id', user()->id)->update([
+            'number_trips' => user()->number_trips + 1,
+        ]);
+
+        return redirect()->with(['success' => 'Votre trajet a été ajouté avec succès.'])->route('user.dashboard.trips');
     }
 }

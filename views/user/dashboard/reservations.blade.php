@@ -7,7 +7,6 @@
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="mbr-white col-md-10">
-                    <h1 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style display-1"></h1>
                     <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-1">
                         Gestion de compte
                     </h3>
@@ -26,8 +25,15 @@
             <div class="row px-1">
                 <div class="tab-content">
                     <div class="tab-pane in active mbr-table">
-                        <section class="testimonials4 cid-qNiBy6X3PI" id="testimonials4-n">
+                        <section class="testimonials4 cid-qNiBy6X3PI">
                             <div class="container">
+                                @if (flashExist('success'))
+                                <div data-form-alert>
+                                    <div class="alert alert-form alert-success text-xs-center">
+                                        {{ flashGet('success') }}
+                                    </div>
+                                </div>
+                                @endif
                                 <h2 class="pb-3 mbr-fonts-style mbr-white align-center display-2">
                                     Mes réservations
                                 </h2>
@@ -48,11 +54,15 @@
                                         <div class="user row">
                                             <div class="col-lg-3 col-md-4">
                                                 <div class="user_image">
-                                                    <img style="border-radius: 50%;" src="{{ asset('resources/images/default.png') }}">
+                                                    @if (empty($driver->image))
+                                                    <img style="border-radius: 50%;" src="{{ asset('resources/images/avatar/' . $driver->sex . '.png') }}">
+                                                    @else
+
+                                                    @endif
                                                 </div>
                                                 <p class="mbr-fonts-style display-7" style="margin-left: 2rem;">
-                                                    <b>Fabrice</b> (Novice)<br />
-                                                    20 ans
+                                                    <b>{{ ucfirst($driver->first_name) }}</b><br />
+                                                    {{ date('Y') - $driver->birth_year }} ans
                                                 </p>
                                             </div>
                                             <div class="testimonials-caption col-lg-6 col-md-8">

@@ -480,3 +480,13 @@ nav .mbr-section-btn {
   padding-bottom: 60px;
   background-image: url(../../images/header/trust.jpg);
 }
+.headerDetail {
+  padding-top: 135px;
+  padding-bottom: 60px;
+  background-image: url(../../images/header/detail.jpg);
+}
+.headerProfile {
+    padding-top: 135px;
+    padding-bottom: 60px;
+    background-image: url(../../images/header/profile.jpg);
+}

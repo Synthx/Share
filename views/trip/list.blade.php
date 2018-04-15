@@ -7,7 +7,6 @@
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="mbr-white col-md-10">
-                    <h1 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style display-1"></h1>
                     <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-1">
                         Rechercher un trajet
                     </h3>
@@ -23,7 +22,7 @@
             <div class="row px-1">
                 <div class="tab-content">
                     <div class="tab-pane in active mbr-table">
-                        <section class="testimonials4 cid-qNiBy6X3PI" id="testimonials4-n">
+                        <section class="testimonials4 cid-qNiBy6X3PI">
                             <div class="container">
                                 @if ($total > 0)
                                 <h3 class="mbr-section-subtitle mbr-light pb-3 mbr-fonts-style mbr-white align-center display-5">
@@ -55,7 +54,7 @@
                                                     @endif
                                                 </div>
                                                 <p class="mbr-fonts-style display-7" style="margin-left: 2rem;">
-                                                    <b>{{ $driver->first_name }}</b><br />
+                                                    <b>{{ ucfirst($driver->first_name) }}</b><br />
                                                     {{ date('Y') - $driver->birth_year }} ans
                                                 </p>
                                             </div>
@@ -80,8 +79,8 @@
                                                     </p>
                                                 </div>
                                                 <a class="btn btn-primary display-4" style="margin: .0rem;" href="{{ route('trip.view') }}?id={{ $trip->id }}">
-                                                    <span class="mbri-success mbr-iconfont mbr-iconfont-btn"></span>
-                                                    RÉSERVER
+                                                    <span class="mbri-plus mbr-iconfont mbr-iconfont-btn"></span>
+                                                    VOIR
                                                 </a>
                                             </div>
                                         </div>

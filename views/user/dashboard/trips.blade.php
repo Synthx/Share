@@ -7,7 +7,6 @@
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="mbr-white col-md-10">
-                    <h1 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style display-1"></h1>
                     <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-1">
                         Gestion de compte
                     </h3>
@@ -62,7 +61,7 @@
                                                             ({{ $trip->remaining }} place(s) restante(s))
                                                         </p>
                                                         <br />
-                                                        <a class="btn btn-primary display-4" style="margin: .0rem;" href="#">
+                                                        <a class="btn btn-primary display-4" style="margin: .0rem;" href="{{ route('trip.view') }}?id={{ $trip->id }}">
                                                             <span class="mbri-plus mbr-iconfont mbr-iconfont-btn" style="font-size: 1rem;"></span>
                                                             VOIR
                                                         </a>

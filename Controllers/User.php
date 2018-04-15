@@ -48,13 +48,16 @@ class User extends Controller
             'year' => 'required|num|size:4|max:' . (date('Y')-18) . '|min:' . (date('Y')-100)
         ]);
 
+        $register_date = new \DateTime('NOW');
+
         UserManager::add([
             'email' => $request->register_email,
             'password' => password_hash($request->register_password, PASSWORD_BCRYPT),
             'last_name' => $request->name,
             'first_name' => $request->firstname,
             'sex' => $request->sex,
-            'birth_year' => $request->year
+            'birth_year' => $request->year,
+            'register_date' => $register_date->format('Y-m-d H:i:s')
         ]);
 
         return redirect()->with(['success' => 'Vous pouvez dès maintenant vous connecter.'])->route('user.login');
@@ -65,6 +68,19 @@ class User extends Controller
         Auth::logout();
 
         return redirect()->route('home');
+    }
+
+    public function viewProfile()
+    {
+        $request = new Request;
+
+        $this->validate($request, [
+            'id' => 'required|num|exist:users,id'
+        ], 'home');
+
+        $user = UserManager::find($request->id);
+
+        return view('user.profile', compact('user'));
     }
 
     /* DASHBOARD */
